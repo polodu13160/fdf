@@ -6,7 +6,7 @@
 /*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:43:38 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/11 16:43:34 by pde-petr         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:38:46 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int					ft_printhexa(unsigned long int hexa, char type);
 int					ft_printf_format(char format, va_list arg);
 int					ft_printf(const char *format, ...);
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 10000
 # endif
 
 char				*get_next_line(int fd);

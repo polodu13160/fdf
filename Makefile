@@ -10,7 +10,7 @@ MLX = $(MLX_PATH)/libmlx_Linux.a
 MLX_PATH = srcs/minilibx-linux
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRCS = srcs/main.c srcs/parsing.c srcs/parsing_pt2.c 
+SRCS = srcs/main.c srcs/parsing.c srcs/parsing_pt2.c srcs/draw.c
 OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
@@ -41,7 +41,7 @@ fclean: clean
 
 	
 
-re: fclean all
+re: fclean all 
 
 init:
 	$(MAKE) re

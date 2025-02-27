@@ -6,13 +6,13 @@
 /*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:50:42 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/19 16:33:41 by pde-petr         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:29:24 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdfheader.h"
 #include <stdlib.h>
-#include <math.h>
+
 
 int	size_tab(char **split_point)
 {
@@ -102,8 +102,6 @@ t_point_map	create_point(char *split_line, int x, int y)
 		new_point.x = x;
 		new_point.y = y;
 		new_point.z.z = ft_atoi(split_point[0], &error_atoi);
-		new_point.z.x = new_point.x * cos(120) + new_point.y * cos(120 + 2) + new_point.z.z * cos(120 - 2);
-		new_point.z.y = new_point.x * sin(120) + new_point.y * sin(120 + 2) + new_point.z.z * sin(120 - 2);
 		if (size_tab(split_point) == 2)
 			new_point.color = ft_hexa_color(split_point[1]);
 		else
@@ -114,3 +112,5 @@ t_point_map	create_point(char *split_line, int x, int y)
 	ft_free_tab(split_point);
 	return (new_point);
 }
+
+
