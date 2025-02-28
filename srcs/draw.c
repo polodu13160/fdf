@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:47:49 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/27 11:56:30 by pde-petr         ###   ########.fr       */
+/*   Updated: 2025/02/28 23:00:35 by paul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdfheader.h"
 #include "math.h"
-
+#include <stdlib.h>
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -22,66 +22,65 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int draw_line(t_point_map **data, t_draw_line info_draw, t_data *img)
+int	draw_line(t_point_map **data, t_draw_line info_draw, t_data *img)
 {
-    info_draw.dx = data[info_draw.y][info_draw.x + 1].z.x - data[info_draw.y][info_draw.x].z.x;
-    info_draw.dy = data[info_draw.y][info_draw.x + 1].z.y - data[info_draw.y][info_draw.x].z.y;
-
-    if (abs(info_draw.dx) > abs(info_draw.dy))
-        info_draw.steps = abs(info_draw.dx);
-    else
-        info_draw.steps  = abs(info_draw.dy);
-
-    info_draw.x_inc = info_draw.dx / (float)info_draw.steps;
-    info_draw.y_inc = info_draw.dy / (float)info_draw.steps;
-
-    info_draw.x0 = data[info_draw.y][info_draw.x].z.x;
-    info_draw.y0 = data[info_draw.y][info_draw.x].z.y;
-    
-    info_draw.index = 0;
-    while (info_draw.index <= info_draw.steps)
-    {
-        my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0), info_draw.color);
-        info_draw.x0 += info_draw.x_inc;// * zoom;
-        info_draw.y0 += info_draw.y_inc;// * zoom;
-        info_draw.index++;
-    }
-    return 0;
+	info_draw.dx = data[info_draw.y][info_draw.x + 1].z.x
+		- data[info_draw.y][info_draw.x].z.x;
+	info_draw.dy = data[info_draw.y][info_draw.x + 1].z.y
+		- data[info_draw.y][info_draw.x].z.y;
+	if (abs(info_draw.dx) > abs(info_draw.dy))
+		info_draw.steps = abs(info_draw.dx);
+	else
+		info_draw.steps = abs(info_draw.dy);
+	info_draw.x_inc = info_draw.dx / (float)info_draw.steps;
+	info_draw.y_inc = info_draw.dy / (float)info_draw.steps;
+	info_draw.x0 = data[info_draw.y][info_draw.x].z.x;
+	info_draw.y0 = data[info_draw.y][info_draw.x].z.y;
+	info_draw.index = 0;
+	while (info_draw.index <= info_draw.steps)
+	{
+		my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0),
+			info_draw.color);
+		info_draw.x0 += info_draw.x_inc; // * zoom;
+		info_draw.y0 += info_draw.y_inc; // * zoom;
+		info_draw.index++;
+	}
+	return (0);
 }
-int draw_line_vertical(t_point_map **data, t_draw_line info_draw, t_data *img)
+int	draw_line_vertical(t_point_map **data, t_draw_line info_draw, t_data *img)
 {
-    info_draw.dx = data[info_draw.y + 1][info_draw.x].z.x - data[info_draw.y][info_draw.x].z.x;
-    info_draw.dy = data[info_draw.y + 1][info_draw.x].z.y - data[info_draw.y][info_draw.x].z.y;
-
-    if (abs(info_draw.dx) > abs(info_draw.dy))
-        info_draw.steps = abs(info_draw.dx);
-    else
-        info_draw.steps  = abs(info_draw.dy);
-
-    info_draw.x_inc = info_draw.dx / (float)info_draw.steps;
-    info_draw.y_inc = info_draw.dy / (float)info_draw.steps;
-
-    info_draw.x0 = data[info_draw.y][info_draw.x].z.x;
-    info_draw.y0 = data[info_draw.y][info_draw.x].z.y;
-    
-    info_draw.index = 0;
-    while (info_draw.index <= info_draw.steps)
-    {
-        my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0), info_draw.color);
-        info_draw.x0 += info_draw.x_inc;// * zoom;
-        info_draw.y0 += info_draw.y_inc;// * zoom;
-        info_draw.index++;
-    }
-    return 0;
+	info_draw.dx = data[info_draw.y + 1][info_draw.x].z.x
+		- data[info_draw.y][info_draw.x].z.x;
+	info_draw.dy = data[info_draw.y + 1][info_draw.x].z.y
+		- data[info_draw.y][info_draw.x].z.y;
+	if (abs(info_draw.dx) > abs(info_draw.dy))
+		info_draw.steps = abs(info_draw.dx);
+	else
+		info_draw.steps = abs(info_draw.dy);
+	info_draw.x_inc = info_draw.dx / (float)info_draw.steps;
+	info_draw.y_inc = info_draw.dy / (float)info_draw.steps;
+	info_draw.x0 = data[info_draw.y][info_draw.x].z.x;
+	info_draw.y0 = data[info_draw.y][info_draw.x].z.y;
+	info_draw.index = 0;
+	while (info_draw.index <= info_draw.steps)
+	{
+		my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0),
+			info_draw.color);
+		info_draw.x0 += info_draw.x_inc; // * zoom;
+		info_draw.y0 += info_draw.y_inc; // * zoom;
+		info_draw.index++;
+	}
+	return (0);
 }
 
-void draw_image(t_point_map **data, t_size_map size, int x, int y, t_data *img)
+void	draw_image(t_point_map **data, t_size_map size, int x, int y,
+		t_data *img)
 {
-    t_draw_line info_draw;
-    
-    info_draw = (t_draw_line){.x = x , .y = y, .color = data[y][x].color};
-    if (x < size.xmax - 1)
-        draw_line(data, info_draw, img); 
-    if (y < size.ymax - 1)
-        draw_line_vertical(data, info_draw, img);
+	t_draw_line info_draw;
+
+	info_draw = (t_draw_line){.x = x, .y = y, .color = data[y][x].color};
+	if (x < size.xmax - 1)
+		draw_line(data, info_draw, img);
+	if (y < size.ymax - 1)
+		draw_line_vertical(data, info_draw, img);
 }

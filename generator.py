@@ -6,7 +6,7 @@ rows, cols = 10, 10
 # Génération d'un tableau de nombres aléatoires entre -59 et 59
 data = np.random.randint(-59, 60, size=(rows, cols))
 
-# Formatage des lignes pour garder un alignement uniforme
+# Formatage des linees pour garder un alineement uniforme
 formatted_lines = [" ".join(f"{num:3d}" for num in row) for row in data]
 
 # Nom du fichier

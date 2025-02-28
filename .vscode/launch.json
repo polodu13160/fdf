@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/fdf",
-        "args": ["maps1/test_maps/42.fdf"],
+        "args": ["10-70.fdf"],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],
