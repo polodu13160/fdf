@@ -23,8 +23,6 @@ int	size_tab(char **split_point)
 	return (i);
 }
 
-
-
 int	ft_hexa_color(char *split_join)
 {
 	int	i;

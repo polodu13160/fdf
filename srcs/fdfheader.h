@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdfheader.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:59:49 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/28 23:42:24 by paul             ###   ########.fr       */
+/*   Updated: 2025/03/04 15:44:16 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # endif
 # define ANGLE 0.523599
 
+# include "../minilibx-linux/mlx.h"
 # include "libft_updated/libft.h"
-# include "minilibx-linux/mlx.h"
 
 # define HEXA "0123456789ABCDEF"
 
@@ -67,14 +67,17 @@ typedef struct s_vars
 }						t_vars;
 typedef struct s_draw_line
 {
-	int					color;
-	int					steps;
-	int					x;
-	int					y;
-	int dx, dy;
-	float x_inc, y_inc;
-	float x0, y0;
-	int					index;
+	int			color;
+	int			steps;
+	int			x;
+	int			y;
+	int			dx;
+	int			dy;
+	float		x_inc;
+	float		y_inc;
+	float		x0;
+	float		y0;
+	int			index;
 }						t_draw_line;
 typedef struct s_stock_maps
 {
@@ -83,7 +86,7 @@ typedef struct s_stock_maps
 
 }						t_stock_maps;
 
-void					free_mlx(t_vars *vars);
+void					free_mlx(t_vars *vars, int error);
 void					ft_free_tab(char **tab);
 void					ft_free_line(t_stock_maps *get_line);
 void					ft_free_all(int y, t_point_map **maps,
@@ -116,11 +119,11 @@ void					ft_trigo(t_point_map **maps, t_size_map *size_map,
 int						init_mlx(t_vars *vars);
 int						press_esc(int keycode, t_vars *vars);
 int						close_windows(t_vars *vars);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int	draw_line(t_point_map **data, t_draw_line info_draw, t_data *img);
-int	draw_line_vertical(t_point_map **data, t_draw_line info_draw, t_data *img);
-
-void	draw_image(t_point_map **data, t_size_map size, int x, int y,
-		t_data *img);
+void					my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int						draw_line(t_point_map **data, t_draw_line info_draw,
+							t_data *img);
+int						draw_line_vertical(t_point_map **data,
+							t_draw_line info_draw, t_data *img);
+void					draw_image(t_vars *vars, int x, int y, t_data *img);
 
 #endif

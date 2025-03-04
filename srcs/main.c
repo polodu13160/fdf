@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:58:38 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/28 23:48:02 by paul             ###   ########.fr       */
+/*   Updated: 2025/03/04 15:40:49 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdfheader.h"
 #include "fcntl.h"
-
-
-
-
-
-
+#include "fdfheader.h"
 
 int	ft_fdf(t_point_map **maps, t_size_map size_map)
 {
@@ -35,16 +29,14 @@ int	ft_fdf(t_point_map **maps, t_size_map size_map)
 	{
 		x = 0;
 		while (x++ < size_map.xmax)
-			draw_image(maps, size_map, x - 1, y - 1, &vars.img);
+			draw_image(&vars, x - 1, y - 1, &vars.img);
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img.img, 0, 0);
-	// mlx_key_hook(vars.win, press_esc, &vars);
-	mlx_hook(vars.win, 2, (1L<<0), press_esc, &vars);
+	mlx_hook(vars.win, 2, (1L << 0), press_esc, &vars);
 	mlx_hook(vars.win, 17, 0L, close_windows, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
-
 
 int	main(int argc, char **argv)
 {

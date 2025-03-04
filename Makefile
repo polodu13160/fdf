@@ -7,7 +7,7 @@ FLAGSMLX = -L$(MLX_PATH) -lmlx -lX11 -lXext -lm
 NAME = fdf
 LIBFT_PATH = srcs/libft_updated
 MLX = $(MLX_PATH)/libmlx_Linux.a
-MLX_PATH = srcs/minilibx-linux
+MLX_PATH = minilibx-linux
 LIBFT = $(LIBFT_PATH)/libft.a
 
 SRCS = srcs/main.c srcs/parsing.c srcs/parsing_pt2.c srcs/draw.c srcs/free.c srcs/line_to_point.c srcs/mlx_func.c srcs/trigo.c
@@ -52,6 +52,4 @@ init:
 	$(MAKE) clean
 
 resize: 
-	$(MAKE) H=$(H) L=$(L) re
-
-#  make && valgrind --track-origins=yes ./fdf ./maps/test_maps/42.fdf 
+	$(MAKE) H=$(H) L=$(L) clean $(NAME)

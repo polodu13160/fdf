@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h" 
+#include "libft.h"
 #include <stdarg.h>
 
 static int	check_null_pointer(void *pointer)

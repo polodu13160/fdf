@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 23:07:39 by paul              #+#    #+#             */
-/*   Updated: 2025/02/28 23:46:14 by paul             ###   ########.fr       */
+/*   Updated: 2025/03/04 15:44:45 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdfheader.h"
 #include <stdlib.h>
 
-void	free_mlx(t_vars *vars)
+void	free_mlx(t_vars *vars, int error)
 {
-	mlx_destroy_image(vars->mlx, vars->img.img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
+	if (error == 1)
+		mlx_destroy_display(vars->mlx);
+	else if (error == 2)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_display(vars->mlx);
+	}
+	else if (error >= 3)
+	{
+		mlx_destroy_image(vars->mlx, vars->img.img);
+		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_display(vars->mlx);
+	}
 	free(vars->mlx);
 }
 

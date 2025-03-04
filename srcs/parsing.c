@@ -15,9 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-
 char	*ft_delete_lf(char *line)
 {
 	int	i;
@@ -41,7 +38,6 @@ void	read_line(t_stock_maps **get_line, t_size_map *size_map, int fd,
 		exit(1);
 	*get_line = *start;
 }
-
 
 int	ft_parsing(int fd, t_point_map ***maps, t_size_map *size_map)
 {

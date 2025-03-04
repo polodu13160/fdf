@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: paul <paul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:47:49 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/02/28 23:00:35 by paul             ###   ########.fr       */
+/*   Updated: 2025/03/04 15:38:39 by pde-petr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ int	draw_line(t_point_map **data, t_draw_line info_draw, t_data *img)
 	{
 		my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0),
 			info_draw.color);
-		info_draw.x0 += info_draw.x_inc; // * zoom;
-		info_draw.y0 += info_draw.y_inc; // * zoom;
+		info_draw.x0 += info_draw.x_inc;
+		info_draw.y0 += info_draw.y_inc;
 		info_draw.index++;
 	}
 	return (0);
 }
+
 int	draw_line_vertical(t_point_map **data, t_draw_line info_draw, t_data *img)
 {
 	info_draw.dx = data[info_draw.y + 1][info_draw.x].z.x
@@ -66,21 +67,20 @@ int	draw_line_vertical(t_point_map **data, t_draw_line info_draw, t_data *img)
 	{
 		my_mlx_pixel_put(img, round(info_draw.x0), round(info_draw.y0),
 			info_draw.color);
-		info_draw.x0 += info_draw.x_inc; // * zoom;
-		info_draw.y0 += info_draw.y_inc; // * zoom;
+		info_draw.x0 += info_draw.x_inc;
+		info_draw.y0 += info_draw.y_inc;
 		info_draw.index++;
 	}
 	return (0);
 }
 
-void	draw_image(t_point_map **data, t_size_map size, int x, int y,
-		t_data *img)
+void	draw_image(t_vars *vars, int x, int y, t_data *img)
 {
-	t_draw_line info_draw;
+	t_draw_line	info_draw;
 
-	info_draw = (t_draw_line){.x = x, .y = y, .color = data[y][x].color};
-	if (x < size.xmax - 1)
-		draw_line(data, info_draw, img);
-	if (y < size.ymax - 1)
-		draw_line_vertical(data, info_draw, img);
+	info_draw = (t_draw_line){.x = x, .y = y, .color = vars->maps[y][x].color};
+	if (x < vars->size_map.xmax - 1)
+		draw_line(vars->maps, info_draw, &vars->img);
+	if (y < vars->size_map.ymax - 1)
+		draw_line_vertical(vars->maps, info_draw, img);
 }
