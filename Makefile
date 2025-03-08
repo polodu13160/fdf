@@ -1,9 +1,9 @@
 .PHONY: all clean fclean re init resize
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g3 -I$(LIBFT_PATH)
-#FLAGS = -Wall -Wextra -g3 
-FLAGSMLX = -L$(MLX_PATH) -lmlx -lX11 -lXext -lm
+FLAGS = -Wall -Wextra -Werror -g3 -I$(LIBFT_PATH) -I$(MLX_PATH)
+#voir si on doit mettre -lmlx ou -lmlx_Linux
+FLAGSMLX =  -L$(MLX_PATH) -lmlx_Linux -lX11 -lXext -lm
 FLAGLIBFT = -L$(LIBFT_PATH) -lft
 NAME = fdf
 LIBFT_PATH = libft
