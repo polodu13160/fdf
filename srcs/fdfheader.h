@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdfheader.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-petr <pde-petr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauldepetrini <pauldepetrini@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:59:49 by pde-petr          #+#    #+#             */
-/*   Updated: 2025/03/04 15:44:16 by pde-petr         ###   ########.fr       */
+/*   Updated: 2025/03/08 20:09:21 by pauldepetri      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # endif
 # define ANGLE 0.523599
 
-# include "../minilibx-linux/mlx.h"
-# include "libft_updated/libft.h"
+# include "mlx.h"
+# include "libft.h"
 
 # define HEXA "0123456789ABCDEF"
 
